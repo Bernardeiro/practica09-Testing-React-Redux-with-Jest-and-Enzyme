@@ -23,7 +23,6 @@ pipeline {
         stage('Deploy local') {
             steps {
                 echo 'Deploying to local container...'
-                sh 'yarn start &'  // Ejecuta la app en segundo plano
             }
         }
 
