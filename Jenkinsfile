@@ -19,15 +19,16 @@ pipeline {
         stage('Deploy local') {
             steps {
                 echo 'Deploying to local container...'
-                sh 'echo Deploying to local environment'
+                sh 'yarn start &'  // Ejecuta la app en segundo plano
             }
         }
 
         stage('Deploy Docker') {
             steps {
                 echo 'Deploying inside Docker container...'
+                sh 'docker rm -f my-app-container || true'
                 sh 'docker build -t my-app .'
-                sh 'docker run -d -p 3000:3000 my-app'
+                sh 'docker run -d --name my-app-container -p 3000:3000 my-app'
             }
         }
     }
