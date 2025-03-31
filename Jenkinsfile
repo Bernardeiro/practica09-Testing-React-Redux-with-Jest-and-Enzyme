@@ -10,11 +10,15 @@ pipeline {
         }
 
         stage('Test') {
-            steps {
-                echo 'Running tests...'
-                sh 'yarn test --watchAll=false'
-            }
-        }
+			environment {
+				CI = 'true'
+			}
+			steps {
+				echo 'Running tests...'
+				sh 'yarn test'
+			}
+		}
+
 
         stage('Deploy local') {
             steps {
