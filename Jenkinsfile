@@ -23,7 +23,7 @@ pipeline {
         stage('Deploy local') {
             steps {
                 echo 'Deploying to local container...'
-                sh 'yarn start &'
+                //sh 'yarn start &'
             }
         }
 
