@@ -37,7 +37,6 @@ pipeline {
             }
         }
 
-        // NUEVO STAGE para el KPI: Cobertura
         stage('KPI Report - Code Coverage') {
             steps {
                 script {
