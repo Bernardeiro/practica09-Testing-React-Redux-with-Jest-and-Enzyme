@@ -1,0 +1,1 @@
+Jenkins version: 2.492.2

@@ -36,5 +36,20 @@ pipeline {
                 sh 'docker run -d --name my-app-container -p 3000:3000 my-app'
             }
         }
+
+        // NUEVO STAGE para el KPI: Cobertura
+        stage('KPI Report - Code Coverage') {
+            steps {
+                script {
+                    def timestamp = new Date().format("yyyyMMdd_HHmmss")
+                    sh """
+                        mkdir -p kpi_reports
+                        yarn test --coverage --watchAll=false
+                        cp -r coverage/lcov-report kpi_reports/coverage_${timestamp}
+                        echo "Informe de cobertura guardado en: kpi_reports/coverage_${timestamp}"
+                    """
+                }
+            }
+        }
     }
 }
